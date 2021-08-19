@@ -1,2 +1,2 @@
-# terrafomr-learning
+# terraform-learning
 Learning terraform playground
