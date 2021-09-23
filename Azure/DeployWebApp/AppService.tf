@@ -30,7 +30,7 @@ resource "azurerm_resource_group" "test_rg" {
 }
 
 resource "azurerm_app_service_plan" "svcplan" {
-  name                = "wesley-testing-terraform-hp"
+  name                = "wl-test-deploy-hp"
   location            = azurerm_resource_group.test_rg.location
   resource_group_name = azurerm_resource_group.test_rg.name
 
@@ -42,7 +42,7 @@ resource "azurerm_app_service_plan" "svcplan" {
 }
 
 resource "azurerm_app_service" "appsvc" {
-  name                = "wesley-testing-terraform-app"
+  name                = "wl-test-deploy-app"
   location            = azurerm_resource_group.test_rg.location
   resource_group_name = azurerm_resource_group.test_rg.name
   app_service_plan_id = azurerm_app_service_plan.svcplan.id
