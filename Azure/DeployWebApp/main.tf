@@ -25,27 +25,27 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "test_rg" {
-  name     = "rg-test-resources"
-  location = "UK South"
+  name     = "${var.prefix}-rg"
+  location = "${var.location}"
 }
 
 resource "azurerm_app_service_plan" "svcplan" {
-  name                = "wl-test-deploy-hp"
-  location            = azurerm_resource_group.test_rg.location
-  resource_group_name = azurerm_resource_group.test_rg.name
+    name                = "${var.prefix}-asp"
+  location            = "${azurerm_resource_group.test_rg.location}"
+  resource_group_name = "${azurerm_resource_group.test_rg.name}"
 
   sku {
-    tier = "Standard"
-    size = "S1"
-    capacity = "2"
+    tier = "${var.hosting_plan_sku_tier}"
+    size = "${var.hosting_plan_sku_size}"
+    capacity = "${var.hosting_plan_sku_capacity}"
   }
 }
 
 resource "azurerm_app_service" "appsvc" {
-  name                = "wl-test-deploy-app"
-  location            = azurerm_resource_group.test_rg.location
-  resource_group_name = azurerm_resource_group.test_rg.name
-  app_service_plan_id = azurerm_app_service_plan.svcplan.id
+  name                = "${var.prefix}-app-serv"
+  location            = "${azurerm_resource_group.test_rg.location}"
+  resource_group_name = "${azurerm_resource_group.test_rg.name}"
+  app_service_plan_id = "${azurerm_app_service_plan.svcplan.id}"
 
 
   site_config {
