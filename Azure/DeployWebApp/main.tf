@@ -30,7 +30,7 @@ resource "azurerm_resource_group" "test_rg" {
 }
 
 resource "azurerm_app_service_plan" "svcplan" {
-    name                = "${var.prefix}-asp"
+  name                = "${var.prefix}-asp"
   location            = "${azurerm_resource_group.test_rg.location}"
   resource_group_name = "${azurerm_resource_group.test_rg.name}"
 
